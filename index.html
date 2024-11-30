@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Abyss</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Centering rules container */
+        .rules-container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 60%;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        /* Styling the comments section */
+        #disqus_thread {
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Styling for the footer */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #111;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            border-top: 2px solid #444;
+        }
+
+        /* Cool glow effect on the header */
+        h1 {
+            text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347, 0 0 30px #ff6347;
+        }
+
+        /* Styling for the links */
+        a {
+            color: #ff6347;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ffae42;
+        }
+
+        /* Cool hover effect for comment section */
+        #disqus_thread:hover {
+            background-color: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 0 10px #ff6347;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Abyss</h1>
+
+    <!-- Centered GIF -->
+    <div class="gif-container">
+        <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Animated GIF">
+    </div>
+
+    <!-- Rules Section -->
+    <div class="rules-container">
+        <p>
+            This is a Disqus chatroom where you can talk about basically everything as long as it's appropriate. Users are subject to be banned for any reason at mods' discretion.
+        </p>
+        <p>Rules:</p>
+        <ul>
+            <li>Upvote as many comments as you reasonably can.</li>
+            <li>No spamming and racism.</li>
+            <li>No NSFW in the main chat. You can use the NSFW room.</li>
+            <li>No posting any malicious links.</li>
+            <li>Using alt accounts or VPN to bypass a temp ban might have consequences.</li>
+            <li>Do not advertise any other places here.</li>
+            <li>Put a disclaimer before giving a spoiler and use spoiler tags.</li>
+        </ul>
+        <p>
+            We have other rooms too. Check them out here:<br>
+            <a href="#">Visit the Art Room</a><br>
+            <a href="#">Know about our staff</a>
+        </p>
+    </div>
+
+    <!-- Disqus Comments Section -->
+    <div id="disqus_thread"></div>
+    <script>
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            
+            // IMPORTANT: Replace MYCHATROOM with your forum shortname!
+            s.src = 'https://the-abyys.disqus.com/embed.js';
+            
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>
+        Please enable JavaScript to view the 
+        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+            comments powered by Disqus.
+        </a>
+    </noscript>
+
+    <!-- Footer Section with Site Date -->
+    <footer>
+        <p>Site created on: <span id="site-date"></span></p>
+    </footer>
+
+    <script>
+        // Display the current date when the site was made
+        document.getElementById('site-date').innerText = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
