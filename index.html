@@ -10,35 +10,123 @@
         body {
             font-family: Arial, sans-serif;
             color: white;
-            text-align: center;
-            background-color: #000;
+            background-image: url('image1.png'); /* Background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
+            text-align: center; /* Center all text */
+            transition: background-color 0.3s ease;
         }
 
-        /* Centering rules container */
+        /* Header design */
+        h1 {
+            text-transform: uppercase;
+            font-size: 4rem;
+            margin: 100px 0 20px; /* Adjusted margin to ensure title isn't covered by navbar */
+            background: linear-gradient(to right, #a4aaff, #6b6bff, #9e8fff); /* Gradient effect for space-like feel */
+            color: transparent; /* Make text transparent to show gradient */
+            -webkit-background-clip: text; /* Ensures gradient is clipped to text */
+            background-clip: text; /* For modern browsers */
+            text-shadow: 0 0 15px rgba(176, 160, 255, 0.7); /* Soft cosmic glow */
+        }
+
+        /* Centering and styling the GIF */
+        .gif-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .gif-container img {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            filter: none; /* Removed glowing effect */
+        }
+
+        /* Navigation bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            text-align: center;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ffbc42;
+        }
+
+        /* Rules Section */
         .rules-container {
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
             width: 60%;
             border-radius: 10px;
             text-align: left;
+            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+            box-shadow: 0 0 10px rgba(255, 188, 66, 0.3); /* Soft golden glow */
         }
 
-        /* Styling the comments section */
-        #disqus_thread {
-            margin-top: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
+        .rules-container ul {
+            list-style: square;
+            padding-left: 20px;
+        }
+
+        .rules-container ul li {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .rules-container ul li:hover {
+            transform: scale(1.05);
+            color: #ffbc42;
+        }
+
+        /* Dark/Light Mode toggle button */
+        .mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffbc42;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             color: white;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1rem;
         }
 
-        /* Styling for the footer */
+        /* Floating Back-to-top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            background-color: #ffbc42;
+            padding: 10px 20px;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background-color: #ffae42;
+        }
+
+        /* Footer and social links */
         footer {
             margin-top: 40px;
             padding: 20px;
@@ -47,69 +135,105 @@
             font-size: 14px;
             text-align: center;
             border-top: 2px solid #444;
+            text-shadow: 0 0 5px #ffbc42;
         }
 
-        /* Cool glow effect on the header */
-        h1 {
-            text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347, 0 0 30px #ff6347;
+        /* Updated Social Media Sharing Links */
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
         }
 
-        /* Styling for the links */
-        a {
-            color: #ff6347;
-            text-decoration: none;
+        .social-icons a:hover {
+            color: #ffbc42;
         }
 
-        a:hover {
-            color: #ffae42;
+        /* Social Media sharing buttons */
+        .social-icons a.share {
+            font-size: 22px;
         }
 
-        /* Cool hover effect for comment section */
-        #disqus_thread:hover {
-            background-color: rgba(0, 0, 0, 0.85);
-            box-shadow: 0 0 10px #ff6347;
+        /* FAQ Section */
+        .faq-question {
+            cursor: pointer;
+            font-size: 1.2rem;
+            background-color: #444;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: left;
+            color: white;
         }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background-color: #333;
+            margin-top: 5px;
+        }
+
+        /* Adjusting Disqus Comments to make text readable */
+        #disqus_thread {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            max-width: 90%;
+            box-shadow: 0 0 10px rgba(255, 188, 66, 0.3); /* Soft golden glow */
+            background: rgba(0, 0, 0, 0.7); /* Dark transparent background for better visibility */
+        }
+
     </style>
 </head>
 <body>
+    <!-- Navigation bar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Rules</a>
+        <a href="#">Art Room</a>
+        <a href="#">About Us</a>
+    </nav>
+
     <h1>The Abyss</h1>
 
-    <!-- Centered GIF -->
+    <!-- Welcome message with time-based animation -->
+    <div id="welcome-message"></div>
+    <script>
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) return "Good Morning, Abyssian!";
+            else if (hour < 18) return "Good Afternoon, Abyssian!";
+            else return "Good Evening, Abyssian!";
+        }
+        document.getElementById('welcome-message').innerText = getGreeting();
+    </script>
+
+    <!-- Centered GIF (static) -->
     <div class="gif-container">
-        <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Animated GIF">
+        <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Animated Winter GIF">
     </div>
 
     <!-- Rules Section -->
     <div class="rules-container">
-        <p>
-            This is a Disqus chatroom where you can talk about basically everything as long as it's appropriate. Users are subject to be banned for any reason at mods' discretion.
-        </p>
-        <p>Rules:</p>
+        <p>Welcome to The Abyss! Share your thoughts and enjoy the community. Remember to follow the rules below to maintain harmony.</p>
+        <p><strong>Rules:</strong></p>
         <ul>
             <li>Upvote as many comments as you reasonably can.</li>
-            <li>No spamming and racism.</li>
-            <li>No NSFW in the main chat. You can use the NSFW room.</li>
-            <li>No posting any malicious links.</li>
-            <li>Using alt accounts or VPN to bypass a temp ban might have consequences.</li>
-            <li>Do not advertise any other places here.</li>
-            <li>Put a disclaimer before giving a spoiler and use spoiler tags.</li>
+            <li>No spamming or racism.</li>
+            <li>No NSFW content in the main chat (use the NSFW room).</li>
+            <li>No posting malicious links.</li>
+            <li>Bypassing bans with alt accounts or VPNs is not allowed.</li>
+            <li>Do not advertise other places here.</li>
+            <li>Use spoiler tags and give disclaimers before posting spoilers.</li>
         </ul>
-        <p>
-            We have other rooms too. Check them out here:<br>
-            <a href="#">Visit the Art Room</a><br>
-            <a href="#">Know about our staff</a>
-        </p>
     </div>
 
     <!-- Disqus Comments Section -->
     <div id="disqus_thread"></div>
     <script>
-        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        (function() {  
             var d = document, s = d.createElement('script');
-            
-            // IMPORTANT: Replace MYCHATROOM with your forum shortname!
-            s.src = 'https://the-abyys.disqus.com/embed.js';
-            
+            s.src = 'https://the-abyys.disqus.com/embed.js'; 
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
@@ -121,14 +245,19 @@
         </a>
     </noscript>
 
-    <!-- Footer Section with Site Date -->
+    <!-- Floating back-to-top button -->
+    <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+    <!-- Footer Section with Social Media Links -->
     <footer>
-        <p>Site created on: <span id="site-date"></span></p>
+        <div class="social-icons">
+            <!-- Update these with actual share URLs -->
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-abyss-site-url.com" target="_blank" class="share">Facebook</a>
+           
+            <a href="https://twitter.com/intent/tweet?url=https://your-abyss-site-url.com&text=Check%20out%20The%20Abyss!" target="_blank" class="share">Twitter</a>
+            <a href="https://www.instagram.com/share?url=https://your-abyss-site-url.com" target="_blank" class="share">Instagram</a>
+        </div>
     </footer>
 
-    <script>
-        // Display the current date when the site was made
-        document.getElementById('site-date').innerText = new Date().toLocaleDateString();
-    </script>
 </body>
 </html>
