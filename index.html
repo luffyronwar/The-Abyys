@@ -1,263 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Abyss</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* General body styling */
-        body {
-            font-family: Arial, sans-serif;
-            color: white;
-            background-image: url('image1.png'); /* Background image */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            text-align: center; /* Center all text */
-            transition: background-color 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Abyss</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      background-image: url('image1.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
 
-        /* Header design */
-        h1 {
-            text-transform: uppercase;
-            font-size: 4rem;
-            margin: 100px 0 20px; /* Adjusted margin to ensure title isn't covered by navbar */
-            background: linear-gradient(to right, #a4aaff, #6b6bff, #9e8fff); /* Gradient effect for space-like feel */
-            color: transparent; /* Make text transparent to show gradient */
-            -webkit-background-clip: text; /* Ensures gradient is clipped to text */
-            background-clip: text; /* For modern browsers */
-            text-shadow: 0 0 15px rgba(176, 160, 255, 0.7); /* Soft cosmic glow */
-        }
+    /* Header */
+    h1 {
+      text-transform: uppercase;
+      font-size: 4rem;
+      margin: 100px 0 20px;
+      background: linear-gradient(to right, #a4aaff, #6b6bff, #9e8fff);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 0 15px rgba(176, 160, 255, 0.7);
+    }
 
-        /* Centering and styling the GIF */
-        .gif-container {
-            text-align: center;
-            margin: 20px 0;
-        }
+    /* GIF */
+    .gif-container img {
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+    }
 
-        .gif-container img {
-            width: 80%;
-            max-width: 600px;
-            border-radius: 10px;
-            filter: none; /* Removed glowing effect */
-        }
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.7);
+      padding: 10px 0;
+      text-align: center;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      font-size: 1.2rem;
+      margin: 0 20px;
+      text-decoration: none;
+    }
+    nav a:hover { color: #ffbc42; }
 
-        /* Navigation bar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 0;
-            text-align: center;
-            z-index: 100;
-        }
+    /* Rules */
+    .rules-container {
+      margin: 20px auto;
+      padding: 20px;
+      width: 60%;
+      border-radius: 10px;
+      text-align: left;
+      background-color: rgba(0,0,0,0.4);
+      box-shadow: 0 0 10px rgba(255,188,66,0.3);
+    }
+    .rules-container ul li:hover {
+      transform: scale(1.05);
+      color: #ffbc42;
+    }
 
-        nav a {
-            color: white;
-            font-size: 1.2rem;
-            margin: 0 20px;
-            text-decoration: none;
-        }
+    /* Chatroom */
+    #chatroom {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 600px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255,188,66,0.3);
+      text-align: left;
+    }
+    #messages {
+      height: 300px;
+      overflow-y: auto;
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .msg {
+      margin: 5px 0;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    .msg.me { background: #6b6bff; text-align: right; }
+    .msg.other { background: #333; }
 
-        nav a:hover {
-            color: #ffbc42;
-        }
+    #chat-input {
+      display: flex;
+      gap: 10px;
+    }
+    #chat-input input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+    }
+    #chat-input button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #ffbc42;
+      color: white;
+      cursor: pointer;
+    }
 
-        /* Rules Section */
-        .rules-container {
-            margin: 20px auto;
-            padding: 20px;
-            width: 60%;
-            border-radius: 10px;
-            text-align: left;
-            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
-            box-shadow: 0 0 10px rgba(255, 188, 66, 0.3); /* Soft golden glow */
-        }
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      background-color: #ffbc42;
+      padding: 10px 20px;
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+    }
 
-        .rules-container ul {
-            list-style: square;
-            padding-left: 20px;
-        }
-
-        .rules-container ul li {
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .rules-container ul li:hover {
-            transform: scale(1.05);
-            color: #ffbc42;
-        }
-
-        /* Dark/Light Mode toggle button */
-        .mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ffbc42;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            color: white;
-            font-size: 1rem;
-        }
-
-        /* Floating Back-to-top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 20px;
-            background-color: #ffbc42;
-            padding: 10px 20px;
-            border-radius: 50%;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            display: none;
-        }
-
-        .back-to-top:hover {
-            background-color: #ffae42;
-        }
-
-        /* Footer and social links */
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #111;
-            color: white;
-            font-size: 14px;
-            text-align: center;
-            border-top: 2px solid #444;
-            text-shadow: 0 0 5px #ffbc42;
-        }
-
-        /* Updated Social Media Sharing Links */
-        .social-icons a {
-            color: white;
-            font-size: 20px;
-            margin: 0 15px;
-        }
-
-        .social-icons a:hover {
-            color: #ffbc42;
-        }
-
-        /* Social Media sharing buttons */
-        .social-icons a.share {
-            font-size: 22px;
-        }
-
-        /* FAQ Section */
-        .faq-question {
-            cursor: pointer;
-            font-size: 1.2rem;
-            background-color: #444;
-            padding: 10px;
-            margin: 10px 0;
-            text-align: left;
-            color: white;
-        }
-
-        .faq-answer {
-            display: none;
-            padding: 10px;
-            background-color: #333;
-            margin-top: 5px;
-        }
-
-        /* Adjusting Disqus Comments to make text readable */
-        #disqus_thread {
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-            max-width: 90%;
-            box-shadow: 0 0 10px rgba(255, 188, 66, 0.3); /* Soft golden glow */
-            background: rgba(0, 0, 0, 0.7); /* Dark transparent background for better visibility */
-        }
-
-    </style>
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #111;
+      font-size: 14px;
+      border-top: 2px solid #444;
+      text-shadow: 0 0 5px #ffbc42;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 20px;
+      margin: 0 15px;
+    }
+    .social-icons a:hover { color: #ffbc42; }
+  </style>
 </head>
 <body>
-    <!-- Navigation bar -->
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Rules</a>
-        <a href="#">Art Room</a>
-        <a href="#">About Us</a>
-    </nav>
+  <!-- Navbar -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Rules</a>
+    <a href="#">Art Room</a>
+    <a href="#">About Us</a>
+  </nav>
 
-    <h1>The Abyss</h1>
+  <h1>The Abyss</h1>
 
-    <!-- Welcome message with time-based animation -->
-    <div id="welcome-message"></div>
-    <script>
-        function getGreeting() {
-            const hour = new Date().getHours();
-            if (hour < 12) return "Good Morning, Abyssian!";
-            else if (hour < 18) return "Good Afternoon, Abyssian!";
-            else return "Good Evening, Abyssian!";
-        }
-        document.getElementById('welcome-message').innerText = getGreeting();
-    </script>
+  <!-- Welcome message -->
+  <div id="welcome-message"></div>
+  <script>
+    const hour = new Date().getHours();
+    document.getElementById("welcome-message").innerText =
+      hour < 12 ? "Good Morning, Abyssian!" :
+      hour < 18 ? "Good Afternoon, Abyssian!" :
+                   "Good Evening, Abyssian!";
+  </script>
 
-    <!-- Centered GIF (static) -->
-    <div class="gif-container">
-        <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Animated Winter GIF">
+  <!-- GIF -->
+  <div class="gif-container">
+    <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Animated Winter GIF">
+  </div>
+
+  <!-- Rules -->
+  <div class="rules-container">
+    <p>Welcome to The Abyss! Remember the rules:</p>
+    <ul>
+      <li>Upvote as many comments as you reasonably can.</li>
+      <li>No spamming or racism.</li>
+      <li>No NSFW content in the main chat.</li>
+      <li>No posting malicious links.</li>
+      <li>No ban evasion.</li>
+      <li>No advertising other places.</li>
+      <li>Use spoiler tags responsibly.</li>
+    </ul>
+  </div>
+
+  <!-- Chatroom -->
+  <div id="chatroom">
+    <h2>Live Chat</h2>
+    <div id="messages"></div>
+    <form id="chat-input">
+      <input type="text" id="msg" placeholder="Type a message..." autocomplete="off" required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-abyss-site-url.com" target="_blank">Facebook</a>
+      <a href="https://twitter.com/intent/tweet?url=https://your-abyss-site-url.com" target="_blank">Twitter</a>
+      <a href="https://www.instagram.com/share?url=https://your-abyss-site-url.com" target="_blank">Instagram</a>
     </div>
+  </footer>
 
-    <!-- Rules Section -->
-    <div class="rules-container">
-        <p>Welcome to The Abyss! Share your thoughts and enjoy the community. Remember to follow the rules below to maintain harmony.</p>
-        <p><strong>Rules:</strong></p>
-        <ul>
-            <li>Upvote as many comments as you reasonably can.</li>
-            <li>No spamming or racism.</li>
-            <li>No NSFW content in the main chat (use the NSFW room).</li>
-            <li>No posting malicious links.</li>
-            <li>Bypassing bans with alt accounts or VPNs is not allowed.</li>
-            <li>Do not advertise other places here.</li>
-            <li>Use spoiler tags and give disclaimers before posting spoilers.</li>
-        </ul>
-    </div>
+  <!-- Chat Script -->
+  <script>
+    // Simple in-page chat (local only, no server)
+    const form = document.getElementById("chat-input");
+    const input = document.getElementById("msg");
+    const messages = document.getElementById("messages");
 
-    <!-- Disqus Comments Section -->
-    <div id="disqus_thread"></div>
-    <script>
-        (function() {  
-            var d = document, s = d.createElement('script');
-            s.src = 'https://the-abyys.disqus.com/embed.js'; 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>
-        Please enable JavaScript to view the 
-        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-            comments powered by Disqus.
-        </a>
-    </noscript>
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      addMessage(text, "me");
+      input.value = "";
+      // Fake reply (for demo only)
+      setTimeout(() => addMessage("Echo: " + text, "other"), 500);
+    });
 
-    <!-- Floating back-to-top button -->
-    <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
-
-    <!-- Footer Section with Social Media Links -->
-    <footer>
-        <div class="social-icons">
-            <!-- Update these with actual share URLs -->
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-abyss-site-url.com" target="_blank" class="share">Facebook</a>
-           
-            <a href="https://twitter.com/intent/tweet?url=https://your-abyss-site-url.com&text=Check%20out%20The%20Abyss!" target="_blank" class="share">Twitter</a>
-            <a href="https://www.instagram.com/share?url=https://your-abyss-site-url.com" target="_blank" class="share">Instagram</a>
-        </div>
-    </footer>
-
+    function addMessage(text, who) {
+      const div = document.createElement("div");
+      div.className = "msg " + who;
+      div.innerText = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
 </body>
 </html>
