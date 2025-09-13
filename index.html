@@ -1,338 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Abyss</title>
-  <meta name="description" content="The Abyss — cozy rules, art, and a simple live chat demo." />
-  <meta name="theme-color" content="#0a0a0a" />
-  <meta property="og:title" content="The Abyss" />
-  <meta property="og:description" content="Welcome to The Abyss — jump into the chat and the art room." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-abyss-site-url.com" />
-  <meta property="og:image" content="https://your-abyss-site-url.com/og-image.png" />
-
   <style>
-    :root {
-      --bg-overlay: rgba(0,0,0,0.55);
-      --brand: #ffbc42;
-      --brand-2: #6b6bff;
-      --brand-3: #a4aaff;
-      --text: #ffffff;
-      --muted: #c7c7d1;
-      --panel: rgba(0,0,0,0.7);
-      --panel-2: rgba(255,255,255,0.06);
-      --shadow: 0 0 10px rgba(255,188,66,0.25);
-      --radius: 14px;
-      --radius-sm: 10px;
-      --maxw: 1100px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
+      font-family: Arial, sans-serif;
+      color: white;
+      background-image: url('image1.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       margin: 0;
-      background: #000 url('image1.png') center/cover no-repeat fixed;
-      min-height: 100dvh;
+      padding: 0;
       overflow-x: hidden;
       text-align: center;
     }
-    /* Readability overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.65))
-                  , var(--bg-overlay);
-      pointer-events: none;
-      z-index: 0;
-    }
 
-    a { color: var(--text); text-decoration: none; }
-    a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
-
-    /* Skip link for accessibility */
-    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; padding: 8px 10px; background: #111; border-radius: 8px; z-index: 10000; }
-
-    /* Navbar */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: saturate(140%) blur(6px);
-    }
-    nav {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      background: rgba(0,0,0,0.5);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    nav a { font-size: 1.05rem; padding: 8px 10px; border-radius: 8px; transition: background 160ms ease, color 160ms ease; }
-    nav a:hover, nav a[aria-current="page"] { color: var(--brand); background: rgba(255,188,66,0.08); }
-
-    /* Hero */
-    .hero { position: relative; z-index: 1; }
     h1 {
       text-transform: uppercase;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      margin: 120px 16px 10px;
-      line-height: 1.1;
-      background: linear-gradient(to right, var(--brand-3), var(--brand-2), #9e8fff);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      text-shadow: 0 0 15px rgba(176,160,255,0.45);
+      font-size: 4rem;
+      margin: 100px 0 20px;
+      background: linear-gradient(to right, #a4aaff, #6b6bff, #9e8fff);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 0 15px rgba(176, 160, 255, 0.7);
     }
-    .tagline { margin: 8px 16px 20px; color: var(--muted); }
 
-    /* Containers */
-    .container { width: min(100% - 32px, var(--maxw)); margin-inline: auto; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      text-align: center;
+      z-index: 100;
+    }
 
-    /* GIF */
-    .gif-container { position: relative; z-index: 1; }
-    .gif-container img { width: min(90%, 780px); border-radius: var(--radius); box-shadow: var(--shadow); }
+    nav a {
+      color: white;
+      font-size: 1.2rem;
+      margin: 0 20px;
+      text-decoration: none;
+    }
+    nav a:hover { color: #ffbc42; }
 
-    /* Rules */
+    .gif-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .gif-container img {
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
     .rules-container {
-      margin: 28px auto;
-      padding: clamp(16px, 2.5vw, 24px);
-      width: min(100% - 32px, 760px);
-      border-radius: var(--radius);
-      text-align: left;
-      background-color: var(--panel);
-      box-shadow: var(--shadow);
-    }
-    .rules-container p { margin: 0 0 12px; }
-    .rules-container ul { margin: 0; padding-left: 22px; }
-    .rules-container li { margin: 10px 0; list-style: disc; transition: transform 120ms ease, color 120ms ease; transform: translateZ(0); }
-    .rules-container li:hover { transform: scale(1.03); color: var(--brand); }
-
-    /* Chatroom */
-    #chatroom {
-      margin: 30px auto;
-      width: min(100% - 32px, 680px);
-      background: var(--panel);
-      border-radius: var(--radius);
+      margin: 20px auto;
       padding: 20px;
-      box-shadow: var(--shadow);
+      width: 60%;
+      border-radius: 10px;
+      text-align: left;
+      background-color: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 10px rgba(255, 188, 66, 0.3);
+    }
+    .rules-container ul { list-style: square; padding-left: 20px; }
+
+    /* Chatroom styling */
+    .chat-container {
+      margin: 30px auto;
+      padding: 20px;
+      width: 60%;
+      background: rgba(0,0,0,0.7);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,188,66,0.3);
+    }
+    #chat-box {
+      max-height: 300px;
+      overflow-y: auto;
+      background: #222;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
       text-align: left;
     }
-    #chatroom h2 { margin: 0 0 12px; }
-    #messages {
-      height: 340px; overflow-y: auto; background: var(--panel-2);
-      padding: 10px; border-radius: var(--radius-sm); margin-bottom: 10px;
+    .chat-message {
+      padding: 5px 10px;
+      margin: 5px 0;
+      border-radius: 5px;
     }
-    .msg { margin: 6px 0; padding: 8px 12px; border-radius: 10px; word-wrap: break-word; }
-    .msg.me { background: var(--brand-2); text-align: right; }
-    .msg.other { background: #333; }
-    .msg small { display: block; opacity: 0.8; font-size: 11px; margin-top: 2px; }
-
-    #chat-input { display: flex; gap: 10px; align-items: center; }
-    #msg { flex: 1; padding: 10px 12px; border-radius: 10px; border: none; background: rgba(255,255,255,0.9); color: #111; }
-    #sendBtn { padding: 10px 16px; border: none; border-radius: 10px; background: var(--brand); color: #111; cursor: pointer; font-weight: 600; }
-    #sendBtn:hover { filter: brightness(1.05); }
-
-    /* Back to top */
-    #backToTop {
-      position: fixed; bottom: 28px; right: 20px; background-color: var(--brand);
-      padding: 12px 16px; border-radius: 999px; color: #111; font-size: 18px; cursor: pointer;
-      border: none; box-shadow: var(--shadow); display: none; z-index: 1000;
+    .user { background: #333; }
+    .bot { background: #444; color: #ffbc42; }
+    .chat-input { display: flex; }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+    }
+    .chat-input button {
+      padding: 10px 20px;
+      border: none;
+      background: #ffbc42;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
     }
 
-    /* Footer */
-    footer { margin-top: 48px; padding: 24px 16px; background-color: #111; font-size: 14px; border-top: 2px solid #444; text-shadow: 0 0 5px var(--brand); }
-    .social-icons { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; }
-    .social-icons a { font-size: 16px; padding: 6px 10px; border-radius: 8px; background: rgba(255,255,255,0.06); }
-    .social-icons a:hover { color: var(--brand); background: rgba(255,188,66,0.08); }
-
-    /* Reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; scroll-behavior: auto; }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #111;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      border-top: 2px solid #444;
+      text-shadow: 0 0 5px #ffbc42;
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Navbar -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Rules</a>
+    <a href="#">Chat</a>
+    <a href="#">About Us</a>
+  </nav>
 
-  <header role="banner">
-    <nav aria-label="Primary">
-      <a href="#home" data-nav>Home</a>
-      <a href="#rules" data-nav>Rules</a>
-      <a href="#art" data-nav>Art Room</a>
-      <a href="#about" data-nav>About Us</a>
-    </nav>
-  </header>
-
-  <main id="main" class="hero" role="main">
-    <section id="home" class="container" aria-labelledby="title">
-      <h1 id="title">The Abyss</h1>
-      <p id="welcome-message" class="tagline" aria-live="polite"></p>
-
-      <div class="gif-container" aria-describedby="gif-caption">
-        <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Snowy animated winter scene." />
-        <p id="gif-caption" class="tagline">A calm winter loop to set the mood.</p>
-      </div>
-    </section>
-
-    <section id="rules" class="rules-container" aria-labelledby="rules-title">
-      <h2 id="rules-title">House Rules</h2>
-      <p>Welcome to The Abyss! Please keep these in mind:</p>
-      <ul>
-        <li>Upvote as many comments as you reasonably can.</li>
-        <li>No spamming or racism.</li>
-        <li>No NSFW content in the main chat.</li>
-        <li>No posting malicious links.</li>
-        <li>No ban evasion.</li>
-        <li>No advertising other places.</li>
-        <li>Use spoiler tags responsibly.</li>
-      </ul>
-    </section>
-
-    <section id="art" class="container" aria-labelledby="art-title">
-      <h2 id="art-title">Art Room</h2>
-      <p class="tagline">Share your sketches, renders, or animations. Be kind and constructive. ✨</p>
-    </section>
-
-    <section id="chatroom" aria-labelledby="chat-title">
-      <h2 id="chat-title">Live Chat (Local Demo)</h2>
-      <div id="messages" aria-live="polite" aria-label="Chat messages"></div>
-      <form id="chat-input" autocomplete="off">
-        <label class="sr-only" for="msg">Type a message</label>
-        <input type="text" id="msg" name="msg" placeholder="Type a message…" required />
-        <button id="sendBtn" type="submit" aria-label="Send message">Send</button>
-      </form>
-      <p class="tagline">Note: this chat is client‑only for demo purposes (no server). Messages are stored locally in your browser.</p>
-    </section>
-
-    <section id="about" class="container" aria-labelledby="about-title">
-      <h2 id="about-title">About Us</h2>
-      <p class="tagline">A small community floating in the void, celebrating chill vibes, art, and good conversation.</p>
-    </section>
-  </main>
-
-  <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
-
-  <footer role="contentinfo">
-    <div class="social-icons">
-      <!-- Use Web Share API when available; fall back to sharer URLs -->
-      <a href="#" id="shareBtn" role="button">Share this page</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-abyss-site-url.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-      <a href="https://twitter.com/intent/tweet?url=https://your-abyss-site-url.com&text=Join%20me%20in%20The%20Abyss" target="_blank" rel="noopener noreferrer">Twitter / X</a>
-      <!-- Instagram does not have a public share URL; keep as a placeholder action -->
-      <a href="#" id="igCopy" role="button">Copy link for Instagram</a>
-    </div>
-  </footer>
-
-  <script defer>
-    // Util: format time
-    const fmtTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-    // Greeting
-    (function setGreeting(){
+  <h1>The Abyss</h1>
+  <div id="welcome-message"></div>
+  <script>
+    function getGreeting() {
       const hour = new Date().getHours();
-      const msg = hour < 12 ? "Good Morning, Abyssian!" : hour < 18 ? "Good Afternoon, Abyssian!" : "Good Evening, Abyssian!";
-      const node = document.getElementById('welcome-message');
-      if (node) node.textContent = msg;
-    })();
-
-    // Nav current section highlight
-    (function navObserver(){
-      const navLinks = Array.from(document.querySelectorAll('nav a[data-nav]'));
-      const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-      const setCurrent = (id) => navLinks.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + id ? 'page' : 'false'));
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(ent => { if (ent.isIntersecting) setCurrent(ent.target.id); });
-      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
-      sections.forEach(sec => io.observe(sec));
-    })();
-
-    // Back-to-top visibility
-    (function backToTop(){
-      const btn = document.getElementById('backToTop');
-      const onScroll = () => { btn.style.display = window.scrollY > 300 ? 'inline-flex' : 'none'; };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      onScroll();
-    })();
-
-    // Simple client-only chat with localStorage persistence
-    (function chat(){
-      const form = document.getElementById('chat-input');
-      const input = document.getElementById('msg');
-      const messages = document.getElementById('messages');
-      const STORAGE_KEY = 'abyss.chat.messages.v1';
-      const MAX_LEN = 400; // avoid huge messages
-
-      function save(){
-        const data = Array.from(messages.querySelectorAll('.msg')).map(div => ({
-          who: div.classList.contains('me') ? 'me' : 'other',
-          text: div.dataset.text || div.textContent,
-          t: div.dataset.t || ''
-        }));
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
-      }
-      function load(){
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return;
-          const data = JSON.parse(raw);
-          data.forEach(m => addMessage(m.text, m.who, m.t));
-        } catch {}
-      }
-      function addMessage(text, who = 'other', t = fmtTime()){
-        const div = document.createElement('div');
-        div.className = `msg ${who}`;
-        // Avoid any HTML injection by using textContent
-        div.textContent = text;
-        div.dataset.text = text; // preserve raw text
-        div.dataset.t = t;
-        const time = document.createElement('small');
-        time.textContent = t;
-        div.appendChild(time);
-        messages.appendChild(div);
-        messages.scrollTop = messages.scrollHeight;
-        save();
-      }
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const text = (input.value || '').trim();
-        if (!text) return;
-        const safe = text.slice(0, MAX_LEN);
-        addMessage(safe, 'me');
-        input.value = '';
-        // Fake reply (demo only)
-        setTimeout(() => addMessage('Echo: ' + safe, 'other'), 500);
-      });
-
-      // Send with Enter, newline with Shift+Enter
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
-      });
-
-      load();
-    })();
-
-    // Share helpers
-    (function share(){
-      const url = 'https://your-abyss-site-url.com';
-      document.getElementById('shareBtn')?.addEventListener('click', async (e) => {
-        e.preventDefault();
-        if (navigator.share) {
-          try { await navigator.share({ title: 'The Abyss', text: 'Join me in The Abyss', url }); } catch {}
-        } else {
-          try { await navigator.clipboard.writeText(url); alert('Link copied!'); } catch { window.prompt('Copy this link:', url); }
-        }
-      });
-      document.getElementById('igCopy')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        navigator.clipboard?.writeText(url).then(()=>alert('Link copied! Paste into Instagram bio or story.')).catch(()=>window.prompt('Copy this link:', url));
-      });
-    })();
+      if (hour < 12) return "Good Morning, Abyssian!";
+      else if (hour < 18) return "Good Afternoon, Abyssian!";
+      else return "Good Evening, Abyssian!";
+    }
+    document.getElementById('welcome-message').innerText = getGreeting();
   </script>
+
+  <div class="gif-container">
+    <img src="anime-winter-background-93mosbwg8zqhmloq.gif" alt="Winter GIF">
+  </div>
+
+  <!-- Rules -->
+  <div class="rules-container">
+    <p>Welcome to the chatroom! Please follow these simple guidelines:</p>
+    <ul>
+      <li>Be respectful to all participants.</li>
+      <li>No hate speech, slurs, or offensive language.</li>
+      <li>No spamming or inappropriate content.</li>
+      <li>Keep it friendly and have fun!</li>
+    </ul>
+  </div>
+
+  <!-- Chatroom -->
+  <div class="chat-container">
+    <h2>Community Chat</h2>
+    <div id="chat-box"></div>
+    <div class="chat-input">
+      <input type="text" id="message-input" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const input = document.getElementById("message-input");
+
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    renderMessages();
+
+    function sendMessage() {
+      const text = input.value.trim();
+      if (!text) return;
+
+      // User message
+      messages.push({ sender: "You", text });
+      // Bot reply logic
+      let reply = null;
+      const lower = text.toLowerCase();
+      if (lower.includes("hi") || lower.includes("hello")) {
+        reply = "Hello! How are you doing today?";
+      } else if (lower.includes("how are you")) {
+        reply = "I'm just a simple bot, but I'm doing great!";
+      } else if (lower.includes("bye")) {
+        reply = "Goodbye! Hope to see you again.";
+      } else {
+        reply = "I’m here to chat! Try saying hello!";
+      }
+      messages.push({ sender: "Bot", text: reply });
+
+      localStorage.setItem("messages", JSON.stringify(messages));
+      input.value = "";
+      renderMessages();
+    }
+
+    function renderMessages() {
+      chatBox.innerHTML = "";
+      messages.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "chat-message " + (m.sender === "Bot" ? "bot" : "user");
+        div.innerText = `${m.sender}: ${m.text}`;
+        chatBox.appendChild(div);
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    input.addEventListener("keypress", e => {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <p>This is a demo chatroom project. Built with HTML, CSS, and JavaScript.</p>
+  </footer>
 </body>
 </html>
